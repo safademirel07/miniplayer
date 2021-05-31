@@ -184,7 +184,9 @@ class _MiniplayerState extends State<Miniplayer> with TickerProviderStateMixin {
 
                         return Opacity(
                           opacity: borderDouble(
-                              minRange: 0.0, maxRange: 1.0, value: 1 - value * 0.8),
+                              minRange: 0.0,
+                              maxRange: 1.0,
+                              value: 1 - value * 0.8),
                           child: Transform.translate(
                             offset: Offset(0.0, widget.minHeight * value * 0.5),
                             child: child,
@@ -207,9 +209,11 @@ class _MiniplayerState extends State<Miniplayer> with TickerProviderStateMixin {
                         ),
                       ),
                     ),
-                    onTap: () => _snapToPosition(_dragHeight != widget.maxHeight
-                        ? PanelState.MAX
-                        : PanelState.MIN),
+                    onTap: () => _percentage == 1.0
+                        ? () {}
+                        : _snapToPosition(_dragHeight != widget.maxHeight
+                            ? PanelState.MAX
+                            : PanelState.MIN),
                     onPanStart: (details) {
                       _startHeight = _dragHeight;
                       updateCount = 0;
